@@ -4,17 +4,24 @@ import {
   Text, 
   View, 
   Image, 
+  Modal
 } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AntDesign } from "@expo/vector-icons"
 import {Picker} from '@react-native-picker/picker';
 import HamburgerMenu from './HamburguerMenu';
+import FilteredModal 
+  from './FilteredModal';
 
 const Header = ({games, num}) => {
-
-  const [selectedPlatform, setSelectedPlatform] = useState('');
-  const [selectedGenre, setSelectedGenre] = useState('');
+  const [selectedPlatform, setSelectedPlatform] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);  
+
+  const changeModalVisible = () => {
+    setIsModalVisible(!isModalVisible);
+  }
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -71,7 +78,10 @@ const Header = ({games, num}) => {
 
           <Picker
             selectedValue={selectedPlatform}
-            onValueChange={(itemValue) => setSelectedPlatform(itemValue)}
+            onValueChange={(itemValue) => {
+              setSelectedPlatform(itemValue);
+              changeModalVisible();
+            }}
             style={{ height: 50, width: "45%", color:"white" }}
           >
             {platforms.map((platform) => (
@@ -84,7 +94,10 @@ const Header = ({games, num}) => {
           </Picker>
           <Picker
             selectedValue={selectedGenre}
-            onValueChange={(itemValue) => setSelectedGenre(itemValue)}
+            onValueChange={(itemValue) => {
+              setSelectedGenre(itemValue);
+              changeModalVisible();
+            }}
             style={{ height: 50, width: "45%", color:"white" }}
           >
             {genres.map((genre) => (
@@ -96,6 +109,19 @@ const Header = ({games, num}) => {
             ))}
           </Picker>
         </View>
+
+          <Modal
+            transparent={true}
+            animationType="fade"
+            visible={isModalVisible}
+            nRequestClose={changeModalVisible}>
+
+            <FilteredModal 
+              changeModalVisible={changeModalVisible}
+              selectedGenre={selectedGenre}
+              selectedPlatform={selectedPlatform} />
+
+          </Modal>
       </ImageBackground>
     
     </View>
