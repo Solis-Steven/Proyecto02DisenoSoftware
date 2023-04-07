@@ -12,6 +12,7 @@ import {Picker} from '@react-native-picker/picker';
 import HamburgerMenu from './HamburguerMenu';
 import FilteredModal 
   from './FilteredModal';
+import { useNavigation } from '@react-navigation/native';
 
 const Header = ({games, num}) => {
   const [selectedPlatform, setSelectedPlatform] = useState("");
@@ -25,6 +26,7 @@ const Header = ({games, num}) => {
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+    navigation.openDrawer();
   };
 
   const platforms = [
@@ -40,7 +42,7 @@ const Header = ({games, num}) => {
     { label: 'Adventure', value: 'adventure' },
     { label: 'Sports', value: 'sports' },
   ];
-
+  const navigation = useNavigation();
   return (
     <View>
       <ImageBackground 
@@ -63,7 +65,7 @@ const Header = ({games, num}) => {
             style={{ height: 50, width: 190, marginTop: 20 }}
             source={require('../assets/logo-removebg.png')}
           />
-          <HamburgerMenu onPress={toggleSidebar} isSidebarOpen={isSidebarOpen} />
+         <HamburgerMenu onPress={toggleSidebar} isSidebarOpen={isSidebarOpen} navigation={navigation}/>
           {/* <AntDesign name="search1" size={24} color="white" style={{marginRight:10}}/> */}
         </View>
 

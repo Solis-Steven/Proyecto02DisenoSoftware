@@ -46,7 +46,8 @@ const MainScreen = () => {
               <>
                 <Header 
                   games={games}
-                  num={Math.floor(Math.random() * games.length)}/>
+                  num={Math.floor(Math.random() * games.length)}
+                />
 
                 <TrendingComponent
                   games={games}
