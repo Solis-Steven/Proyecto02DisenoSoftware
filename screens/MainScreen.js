@@ -1,4 +1,10 @@
-import { Text, View, SafeAreaView, ScrollView } from 'react-native'
+import { 
+  Text, 
+  View, 
+  SafeAreaView, 
+  ScrollView,
+  Modal 
+} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import LoadingScreen from './LoadingScreen';
@@ -10,7 +16,6 @@ import CrisVelasco from '../components/CrisVelasco';
 
 const MainScreen = () => {
   const [games, setGames] = useState(false);
-  const [num, setNum] = useState(0);
 
   useEffect(() => {
     const gamesData = async() => {
@@ -25,7 +30,7 @@ const MainScreen = () => {
       }
     }
       gamesData();
-}, []);
+  }, []);
 
   return (
     <ScrollView 
@@ -46,7 +51,7 @@ const MainScreen = () => {
 
                 <TrendingComponent
                   games={games}
-                  num={Math.floor(Math.random() * games.length)} />
+                  num={Math.floor(Math.random() * games.length)}/>
 
                 <ElectronicArts />
 
