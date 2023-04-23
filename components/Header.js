@@ -115,7 +115,9 @@ const Header = () => {
             selectedValue={selectedPlatform}
             onValueChange={(itemValue) => {
               setSelectedPlatform(itemValue);
-              changeModalVisible();
+              if(itemValue !== "") {
+                changeModalVisible();
+              }
             }}
             style={{ height: 50, width: "45%", color:"white" }}
           >
