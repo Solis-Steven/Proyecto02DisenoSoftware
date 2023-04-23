@@ -43,6 +43,11 @@ const Header = ({games, num}) => {
     { label: 'Sports', value: 'sports' },
   ];
   const navigation = useNavigation();
+
+  useEffect(() => {
+    console.log("modal", isModalVisible);
+  }, [isModalVisible]);
+  
   return (
     <View>
       <ImageBackground 
@@ -121,7 +126,8 @@ const Header = ({games, num}) => {
             <FilteredModal 
               changeModalVisible={changeModalVisible}
               selectedGenre={selectedGenre}
-              selectedPlatform={selectedPlatform} />
+              selectedPlatform={selectedPlatform}
+              />
 
           </Modal>
       </ImageBackground>

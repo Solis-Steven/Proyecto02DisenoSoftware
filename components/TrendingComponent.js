@@ -1,7 +1,15 @@
-import { Pressable, Text, View, Image, ScrollView } from 'react-native'
+import { Pressable, Text, View, Image, ScrollView} from 'react-native'
 import React from 'react'
 
-const TrendingComponent = ({games, num}) => {
+const TrendingComponent = ({games, num, changeModalVisible, setGameSelected} ) => {
+
+
+
+    const handleGameSelected = (id) => {
+        setGameSelected(id);
+        changeModalVisible();
+    }
+      
   return (
     <View
         style={{
@@ -26,7 +34,9 @@ const TrendingComponent = ({games, num}) => {
                 style={{
                     flexDirection:"row",
                     alignItems:"center"
-                }}>
+                }}
+                onPress={() => handleGameSelected(game["id"])}>
+                
                 <Text style={{
                     fontSize:85,
                     color:"white",

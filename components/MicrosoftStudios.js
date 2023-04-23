@@ -50,7 +50,8 @@ const MicrosoftStudios = () => {
                     style={{
                         flexDirection:"row",
                         alignItems:"center"
-                    }}>
+                    }}
+                    >
                     <Image 
                         source={{
                             uri: `${game["background_image"]}`

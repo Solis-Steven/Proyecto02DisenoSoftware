@@ -13,9 +13,20 @@ import ElectronicArts from '../components/ElectronicArts';
 import MicrosoftStudios from '../components/MicrosoftStudios';
 import ValveSoftware from '../components/ValveSoftware';
 import CrisVelasco from '../components/CrisVelasco';
+import GameModal from '../components/GameModal';
 
 const MainScreen = () => {
   const [games, setGames] = useState(false);
+  const [gameModalVisible, setGameModalVisible] = useState(false);
+  const [gameSelected, setGameSelected] = useState(null); 
+
+  const changeModalVisible = () => {
+    setGameModalVisible(!gameModalVisible);
+  }
+
+
+
+  
 
   useEffect(() => {
     const gamesData = async() => {
@@ -24,13 +35,18 @@ const MainScreen = () => {
         const response = await fetch(url);
         const data = await response.json();
         setGames(data.results)
+        console.log("Games", data.results)
         
       } catch(error) {
-        console.log("Error en la consulta a la api:", error);
+        console.log("Error en la consulta a la api MAINSCREEN:", error);
       }
     }
       gamesData();
   }, []);
+
+  useEffect(() => {
+    console.log("Game Selected", gameSelected);
+  }, [gameSelected]);
 
   return (
     <ScrollView 
@@ -47,19 +63,30 @@ const MainScreen = () => {
                 <Header 
                   games={games}
                   num={Math.floor(Math.random() * games.length)}
+                  
                 />
+
+
+                {console.log(typeof handleGameSelected)}
 
                 <TrendingComponent
                   games={games}
-                  num={Math.floor(Math.random() * games.length)}/>
+                  num={Math.floor(Math.random() * games.length)}
+                  changeModalVisible={changeModalVisible}
+                  setGameSelected={setGameSelected}
+                  />
 
-                <ElectronicArts />
+                <ElectronicArts 
+                  />
 
-                <MicrosoftStudios />
+                <MicrosoftStudios 
+                  />
 
-                <ValveSoftware />
+                <ValveSoftware 
+                  />
 
-                <CrisVelasco />
+                <CrisVelasco
+                  />
               </>
             )
             : (
@@ -68,6 +95,17 @@ const MainScreen = () => {
               </View>
             )
         }
+      <Modal
+            transparent={true}
+            animationType="fade"
+            visible={gameModalVisible}
+            onRequestClose={changeModalVisible}>
+            <GameModal
+              changeModalVisible={changeModalVisible}
+              game={gameSelected}
+            />
+        </Modal>
+
 
     </ScrollView>
   )
