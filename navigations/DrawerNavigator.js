@@ -9,7 +9,10 @@ const Drawer = createDrawerNavigator();
 
 function DrawerMain() {
   return (
-    <Drawer.Navigator screenOptions={{headerShown:false}} drawerContent={(props) => <DrawerContent {...props}/>}>
+    <Drawer.Navigator
+      gestureEnabled={false}
+     screenOptions={{headerShown:false}} 
+     drawerContent={(props) => <DrawerContent {...props}/>}>
         
       <Drawer.Screen
         name="MainDrawer" component={MainScreen}    

@@ -5,7 +5,7 @@ import {
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import HamburgerMenu from './HamburguerMenu';
-import SBar from './SBar';
+import SBar from './SearchBar';
 import Pickers from './Pickers';
 
 const Header = () => {
@@ -54,7 +54,7 @@ const Header = () => {
         </View>
 
         
-        {/* <SBar/> */}
+        <SBar/>
         
 
         <Pickers />
