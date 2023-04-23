@@ -111,15 +111,31 @@ const LoginScreen = () => {
 
             {/* Sign Up Link */}
             <Pressable onPress={() => navigation.navigate("Register")}>
-                <Text 
-                    style={{
-                        textAlign:"center",
-                        color:"white",
-                        fontSize:19,
-                        fontWeight:"600",
-                        marginTop:14}}>
-                    Don't have an account? Sign up now
-                </Text>
+            <View style={{flexDirection: 'row'}}>
+  <Text 
+    style={{
+      textAlign:"center",
+      color:"white",
+      fontSize:19,
+      fontWeight:"600",
+      marginTop:14
+    }}
+  >
+    Don't have an account? 
+  </Text>
+  <Text 
+    style={{
+        marginLeft:6,
+      textAlign:"center",
+      color:"red",
+      fontSize:19,
+      fontWeight:"600",
+      marginTop:14
+    }}
+  >
+    Sign up
+  </Text>
+</View>
             </Pressable>
         </KeyboardAvoidingView>
         
