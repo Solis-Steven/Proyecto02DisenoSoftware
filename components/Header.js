@@ -21,7 +21,6 @@ const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);  
   const [games, setGames] = useState([]);
-  const [num, setNum] = useState(0);
 
   const changeModalVisible = () => {
     setIsModalVisible(!isModalVisible);
@@ -47,37 +46,27 @@ const Header = () => {
   ];
   const navigation = useNavigation();
 
-  // useEffect(() => {
-  //   // actualiza el valor de "num" cada vez que el componente se renderiza
-  //   setNum(Math.floor(Math.random() * (games.length - 11)));
-  //   console.log("Aqui", games.length);
-  // }, [games]);
-
-  // useEffect(() => {
-  //   const gamesData = async() => {
-  //     try {
-  //       const url = "https://api.rawg.io/api/games?page_size=200&key=81ebbf2905154d1e9bce047672266b0e";
-  //       const response = await fetch(url);
-  //       const data = await response.json();
-  //       setGames(data.results)
-  //       console.log("Desde header",);
+  useEffect(() => {
+    const gamesData = async() => {
+      try {
+        const url = "https://api.rawg.io/api/games?page_size=200&key=81ebbf2905154d1e9bce047672266b0e";
+        const response = await fetch(url);
+        const data = await response.json();
+        setGames(data.results)
         
-  //     } catch(error) {
-  //       console.log("Error en la consulta a la api:", error);
-  //     }
-  //   }
-  //     gamesData();
-  // }, []);
+      } catch(error) {
+        console.log("Error en la consulta a la api:", error);
+      }
+    }
+      gamesData();
+  }, []);
   
   return (
-    games.length > 0 && 
-
-      (
-
+    games.length > 0 && (
     <View>
-      {/* <ImageBackground 
+      <ImageBackground 
         source={{
-          uri: `${games[num]["background_image"]}`
+          uri: `${games[Math.floor(Math.random() * (games.length - 11))]["background_image"]}`
         }}
         style={{
           width: "100%",
@@ -99,7 +88,7 @@ const Header = () => {
         </View>
 
         
-        <SBar/>
+        {/* <SBar/> */}
         
 
         <View
@@ -162,10 +151,10 @@ const Header = () => {
               />
 
           </Modal>
-      </ImageBackground> */}
+      </ImageBackground>
     
     </View>
-      )
+    )
   )
 }
 
