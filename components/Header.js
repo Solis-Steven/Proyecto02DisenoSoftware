@@ -13,6 +13,7 @@ import HamburgerMenu from './HamburguerMenu';
 import FilteredModal 
   from './FilteredModal';
 import { useNavigation } from '@react-navigation/native';
+import SBar from './SBar';
 
 const Header = ({games, num}) => {
   const [selectedPlatform, setSelectedPlatform] = useState("");
@@ -44,9 +45,9 @@ const Header = ({games, num}) => {
   ];
   const navigation = useNavigation();
 
-  useEffect(() => {
-    console.log("modal", isModalVisible);
-  }, [isModalVisible]);
+  // useEffect(() => {
+  //   console.log("modal", isModalVisible);
+  // }, [isModalVisible]);
   
   return (
     <View>
@@ -71,8 +72,11 @@ const Header = ({games, num}) => {
             source={require('../assets/logo-removebg.png')}
           />
          <HamburgerMenu onPress={toggleSidebar} isSidebarOpen={isSidebarOpen} navigation={navigation}/>
-          {/* <AntDesign name="search1" size={24} color="white" style={{marginRight:10}}/> */}
         </View>
+
+        
+        {/* <SBar/> */}
+        
 
         <View
           style={{
@@ -121,7 +125,7 @@ const Header = ({games, num}) => {
             transparent={true}
             animationType="fade"
             visible={isModalVisible}
-            nRequestClose={changeModalVisible}>
+            onRequestClose={changeModalVisible}>
 
             <FilteredModal 
               changeModalVisible={changeModalVisible}

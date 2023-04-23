@@ -1,14 +1,13 @@
 import { Pressable, Text, View, Image, ScrollView} from 'react-native'
 import React from 'react'
+import GameRow from './GameRow'
 
-const TrendingComponent = ({games, num, changeModalVisible, setGameSelected} ) => {
+const TrendingComponent = ({games, num, setGameSelected, changeModalVisible} ) => {
 
 
+    
 
-    const handleGameSelected = (id) => {
-        setGameSelected(id);
-        changeModalVisible();
-    }
+    
       
   return (
     <View
@@ -29,14 +28,11 @@ const TrendingComponent = ({games, num, changeModalVisible, setGameSelected} ) =
     {
         games.slice(num, num + 10).map((game, index) => (
             
-            <Pressable 
-                key={game["id"]}
-                style={{
-                    flexDirection:"row",
-                    alignItems:"center"
-                }}
-                onPress={() => handleGameSelected(game["id"])}>
-                
+           <GameRow
+           game={game}
+           key={game["id"]}
+           setGameSelected={setGameSelected}
+           changeModalVisible={changeModalVisible}>
                 <Text style={{
                     fontSize:85,
                     color:"white",
@@ -49,19 +45,7 @@ const TrendingComponent = ({games, num, changeModalVisible, setGameSelected} ) =
                 }}>
                     {index + 1}
                 </Text>
-
-                <Image 
-                    source={{
-                        uri: `${game["background_image"]}`
-                    }}
-                    style={{
-                        width:105,
-                        height:152,
-                        margin:10,
-                        borderRadius:6,
-                        resizeMode:"cover"
-                    }}/>
-            </Pressable>
+           </GameRow>
         ))
     }
     </ScrollView>

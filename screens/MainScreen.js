@@ -35,7 +35,7 @@ const MainScreen = () => {
         const response = await fetch(url);
         const data = await response.json();
         setGames(data.results)
-        console.log("Games", data.results)
+        // console.log("Games", data.results)
         
       } catch(error) {
         console.log("Error en la consulta a la api MAINSCREEN:", error);
@@ -44,9 +44,9 @@ const MainScreen = () => {
       gamesData();
   }, []);
 
-  useEffect(() => {
-    console.log("Game Selected", gameSelected);
-  }, [gameSelected]);
+  // useEffect(() => {
+  //   console.log("Game Selected", gameSelected);
+  // }, [gameSelected]);
 
   return (
     <ScrollView 
@@ -65,10 +65,6 @@ const MainScreen = () => {
                   num={Math.floor(Math.random() * games.length)}
                   
                 />
-
-
-                {console.log(typeof handleGameSelected)}
-
                 <TrendingComponent
                   games={games}
                   num={Math.floor(Math.random() * games.length)}
@@ -76,7 +72,7 @@ const MainScreen = () => {
                   setGameSelected={setGameSelected}
                   />
 
-                <ElectronicArts 
+                {/* <ElectronicArts 
                   />
 
                 <MicrosoftStudios 
@@ -86,7 +82,7 @@ const MainScreen = () => {
                   />
 
                 <CrisVelasco
-                  />
+                  /> */}
               </>
             )
             : (
@@ -95,7 +91,9 @@ const MainScreen = () => {
               </View>
             )
         }
-      <Modal
+        <View>
+
+        <Modal
             transparent={true}
             animationType="fade"
             visible={gameModalVisible}
@@ -105,6 +103,9 @@ const MainScreen = () => {
               game={gameSelected}
             />
         </Modal>
+
+        </View>
+        
 
 
     </ScrollView>

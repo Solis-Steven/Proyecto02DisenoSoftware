@@ -84,7 +84,7 @@ const FilteredModal = ({changeModalVisible, selectedGenre, selectedPlatform}) =>
                                     borderRadius:6,
                                     resizeMode:"cover"
                                 }}
-                                onPress={gameSelected(item["id"])}
+                              
                             />
                         </View>
                         )}
