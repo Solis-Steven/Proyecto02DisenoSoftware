@@ -4,20 +4,31 @@ import {
   Text, 
   View, 
   Image, 
+  Modal
 } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AntDesign } from "@expo/vector-icons"
 import {Picker} from '@react-native-picker/picker';
 import HamburgerMenu from './HamburguerMenu';
+import FilteredModal 
+  from './FilteredModal';
+import { useNavigation } from '@react-navigation/native';
+import SBar from './SBar';
 
-const Header = ({games, num}) => {
-
-  const [selectedPlatform, setSelectedPlatform] = useState('');
-  const [selectedGenre, setSelectedGenre] = useState('');
+const Header = () => {
+  const [selectedPlatform, setSelectedPlatform] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);  
+  const [games, setGames] = useState([]);
+
+  const changeModalVisible = () => {
+    setIsModalVisible(!isModalVisible);
+  }
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+    navigation.openDrawer();
   };
 
   const platforms = [
@@ -33,12 +44,29 @@ const Header = ({games, num}) => {
     { label: 'Adventure', value: 'adventure' },
     { label: 'Sports', value: 'sports' },
   ];
+  const navigation = useNavigation();
 
+  useEffect(() => {
+    const gamesData = async() => {
+      try {
+        const url = "https://api.rawg.io/api/games?page_size=200&key=81ebbf2905154d1e9bce047672266b0e";
+        const response = await fetch(url);
+        const data = await response.json();
+        setGames(data.results)
+        
+      } catch(error) {
+        console.log("Error en la consulta a la api:", error);
+      }
+    }
+      gamesData();
+  }, []);
+  
   return (
+    games.length > 0 && (
     <View>
       <ImageBackground 
         source={{
-          uri: `${games[num]["background_image"]}`
+          uri: `${games[Math.floor(Math.random() * (games.length - 11))]["background_image"]}`
         }}
         style={{
           width: "100%",
@@ -56,9 +84,12 @@ const Header = ({games, num}) => {
             style={{ height: 50, width: 190, marginTop: 20 }}
             source={require('../assets/logo-removebg.png')}
           />
-          <HamburgerMenu onPress={toggleSidebar} isSidebarOpen={isSidebarOpen} />
-          {/* <AntDesign name="search1" size={24} color="white" style={{marginRight:10}}/> */}
+         <HamburgerMenu onPress={toggleSidebar} isSidebarOpen={isSidebarOpen} navigation={navigation}/>
         </View>
+
+        
+        {/* <SBar/> */}
+        
 
         <View
           style={{
@@ -71,7 +102,12 @@ const Header = ({games, num}) => {
 
           <Picker
             selectedValue={selectedPlatform}
-            onValueChange={(itemValue) => setSelectedPlatform(itemValue)}
+            onValueChange={(itemValue) => {
+              setSelectedPlatform(itemValue);
+              if(itemValue !== "") {
+                changeModalVisible();
+              }
+            }}
             style={{ height: 50, width: "45%", color:"white" }}
           >
             {platforms.map((platform) => (
@@ -84,7 +120,12 @@ const Header = ({games, num}) => {
           </Picker>
           <Picker
             selectedValue={selectedGenre}
-            onValueChange={(itemValue) => setSelectedGenre(itemValue)}
+            onValueChange={(itemValue) => {
+              setSelectedGenre(itemValue);
+              if(itemValue !== "") {
+                changeModalVisible();
+              }
+            }}
             style={{ height: 50, width: "45%", color:"white" }}
           >
             {genres.map((genre) => (
@@ -96,9 +137,24 @@ const Header = ({games, num}) => {
             ))}
           </Picker>
         </View>
+
+          <Modal
+            transparent={true}
+            animationType="fade"
+            visible={isModalVisible}
+            onRequestClose={changeModalVisible}>
+
+            <FilteredModal 
+              changeModalVisible={changeModalVisible}
+              selectedGenre={selectedGenre}
+              selectedPlatform={selectedPlatform}
+              />
+
+          </Modal>
       </ImageBackground>
     
     </View>
+    )
   )
 }
 

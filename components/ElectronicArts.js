@@ -1,5 +1,6 @@
 import { Pressable, Text, View, Image, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
+import GameRow from './GameRow';
 
 const ElectronicArts = () => {
     const [games, setGames] = useState([]);
@@ -45,24 +46,7 @@ const ElectronicArts = () => {
         {
             games.slice(num, num + 10).map( game => (
                 
-                <Pressable 
-                    key={game["id"]}
-                    style={{
-                        flexDirection:"row",
-                        alignItems:"center"
-                    }}>
-                    <Image 
-                        source={{
-                            uri: `${game["background_image"]}`
-                        }}
-                        style={{
-                            width:105,
-                            height:152,
-                            margin:10,
-                            borderRadius:6,
-                            resizeMode:"cover"
-                        }}/>
-                </Pressable>
+                <GameRow game={game} key={game["id"]}/>
             ))
         }
         </ScrollView>

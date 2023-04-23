@@ -1,4 +1,10 @@
-import { Text, View, SafeAreaView, ScrollView } from 'react-native'
+import { 
+  Text, 
+  View, 
+  SafeAreaView, 
+  ScrollView,
+  Modal 
+} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import LoadingScreen from './LoadingScreen';
@@ -7,25 +13,15 @@ import ElectronicArts from '../components/ElectronicArts';
 import MicrosoftStudios from '../components/MicrosoftStudios';
 import ValveSoftware from '../components/ValveSoftware';
 import CrisVelasco from '../components/CrisVelasco';
+import GameModal from '../components/GameModal';
 
 const MainScreen = () => {
-  const [games, setGames] = useState(false);
-  const [num, setNum] = useState(0);
+  const [gameModalVisible, setGameModalVisible] = useState(false);
+  const [gameSelected, setGameSelected] = useState(null); 
 
-  useEffect(() => {
-    const gamesData = async() => {
-      try {
-        const url = "https://api.rawg.io/api/games?page_size=200&key=81ebbf2905154d1e9bce047672266b0e";
-        const response = await fetch(url);
-        const data = await response.json();
-        setGames(data.results)
-        
-      } catch(error) {
-        console.log("Error en la consulta a la api:", error);
-      }
-    }
-      gamesData();
-}, []);
+  const changeModalVisible = () => {
+    setGameModalVisible(!gameModalVisible);
+  }
 
   return (
     <ScrollView 
@@ -33,35 +29,48 @@ const MainScreen = () => {
         flex:1,
         backgroundColor:"black",
         paddingTop:50
-      }}>
+    }}>
 
-        {
-          games 
-            ? (
-              <>
-                <Header 
-                  games={games}
-                  num={Math.floor(Math.random() * games.length)}/>
+      <Header />
 
-                <TrendingComponent
-                  games={games}
-                  num={Math.floor(Math.random() * games.length)} />
+      <TrendingComponent
+        changeModalVisible={changeModalVisible}
+        setGameSelected={setGameSelected}
+        />
 
-                <ElectronicArts />
+      {/* <ElectronicArts 
+        />
 
-                <MicrosoftStudios />
+      <MicrosoftStudios 
+        />
 
-                <ValveSoftware />
+      <ValveSoftware 
+        />
 
-                <CrisVelasco />
-              </>
-            )
-            : (
-              <View style={{alignItems:"center", justifyContent:"center"}}>
-                <LoadingScreen />
-              </View>
-            )
-        }
+      <CrisVelasco
+        /> */}
+
+      <View style={{alignItems:"center", justifyContent:"center"}}>
+        <LoadingScreen />
+      </View>
+            
+        
+        <View>
+
+        <Modal
+            transparent={true}
+            animationType="fade"
+            visible={gameModalVisible}
+            onRequestClose={changeModalVisible}>
+            <GameModal
+              changeModalVisible={changeModalVisible}
+              game={gameSelected}
+            />
+        </Modal>
+
+        </View>
+        
+
 
     </ScrollView>
   )
