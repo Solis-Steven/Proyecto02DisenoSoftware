@@ -5,22 +5,12 @@ import {
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import HamburgerMenu from './HamburguerMenu';
-import { useNavigation } from '@react-navigation/native';
 import SBar from './SBar';
 import Pickers from './Pickers';
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
   const [games, setGames] = useState([]);
-
-  
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-    navigation.openDrawer();
-  };
-
-  const navigation = useNavigation();
 
   useEffect(() => {
     const gamesData = async() => {
@@ -60,7 +50,7 @@ const Header = () => {
             style={{ height: 50, width: 190, marginTop: 20 }}
             source={require('../assets/logo-removebg.png')}
           />
-         <HamburgerMenu onPress={toggleSidebar} isSidebarOpen={isSidebarOpen} navigation={navigation}/>
+         <HamburgerMenu />
         </View>
 
         
