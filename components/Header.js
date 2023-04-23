@@ -81,8 +81,10 @@ const Header = ({games, num}) => {
           <Picker
             selectedValue={selectedPlatform}
             onValueChange={(itemValue) => {
-              setSelectedPlatform(itemValue);
-              changeModalVisible();
+              if(itemValue !== "") {
+                setSelectedPlatform(itemValue);
+                changeModalVisible();
+              }
             }}
             style={{ height: 50, width: "45%", color:"white" }}
           >
@@ -97,8 +99,10 @@ const Header = ({games, num}) => {
           <Picker
             selectedValue={selectedGenre}
             onValueChange={(itemValue) => {
-              setSelectedGenre(itemValue);
-              changeModalVisible();
+              if(itemValue !== "") {
+                setSelectedGenre(itemValue);
+                changeModalVisible();
+              }
             }}
             style={{ height: 50, width: "45%", color:"white" }}
           >
