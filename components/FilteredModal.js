@@ -17,12 +17,17 @@ const FilteredModal = ({changeModalVisible, selectedGenre, selectedPlatform}) =>
     useEffect(() => {
         const gamesData = async() => {
         try {
-            const url = `https://api.rawg.io/api/games?page_size=20&genres=${selectedGenre}&platform=${selectedPlatform}&key=81ebbf2905154d1e9bce047672266b0e`;
+            let url = "";
+            if(selectedGenre === "") {
+              url = `https://api.rawg.io/api/games?page_size=100&platform=${selectedPlatform}&key=81ebbf2905154d1e9bce047672266b0e`;
+            } else {
+
+              url = `https://api.rawg.io/api/games?page_size=100&genres=${selectedGenre}&platform=${selectedPlatform}&key=81ebbf2905154d1e9bce047672266b0e`;
+            }
             const response = await fetch(url);
             const data = await response.json();
-            setGames(data.results)
-            console.log("Genero", selectedGenre);
-            console.log("Plataforma", selectedPlatform);
+            num = Math.floor(Math.random() * (data.results.length - 22))
+            setGames(data.results.slice(num, num + 20))
             
         } catch(error) {
             console.log("Error en la consulta a la api:", error);

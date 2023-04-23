@@ -15,11 +15,13 @@ import FilteredModal
 import { useNavigation } from '@react-navigation/native';
 import SBar from './SBar';
 
-const Header = ({games, num}) => {
+const Header = () => {
   const [selectedPlatform, setSelectedPlatform] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);  
+  const [games, setGames] = useState([]);
+  const [num, setNum] = useState(0);
 
   const changeModalVisible = () => {
     setIsModalVisible(!isModalVisible);
@@ -46,12 +48,34 @@ const Header = ({games, num}) => {
   const navigation = useNavigation();
 
   // useEffect(() => {
-  //   console.log("modal", isModalVisible);
-  // }, [isModalVisible]);
+  //   // actualiza el valor de "num" cada vez que el componente se renderiza
+  //   setNum(Math.floor(Math.random() * (games.length - 11)));
+  //   console.log("Aqui", games.length);
+  // }, [games]);
+
+  // useEffect(() => {
+  //   const gamesData = async() => {
+  //     try {
+  //       const url = "https://api.rawg.io/api/games?page_size=200&key=81ebbf2905154d1e9bce047672266b0e";
+  //       const response = await fetch(url);
+  //       const data = await response.json();
+  //       setGames(data.results)
+  //       console.log("Desde header",);
+        
+  //     } catch(error) {
+  //       console.log("Error en la consulta a la api:", error);
+  //     }
+  //   }
+  //     gamesData();
+  // }, []);
   
   return (
+    games.length > 0 && 
+
+      (
+
     <View>
-      <ImageBackground 
+      {/* <ImageBackground 
         source={{
           uri: `${games[num]["background_image"]}`
         }}
@@ -75,7 +99,7 @@ const Header = ({games, num}) => {
         </View>
 
         
-        {/* <SBar/> */}
+        <SBar/>
         
 
         <View
@@ -91,7 +115,9 @@ const Header = ({games, num}) => {
             selectedValue={selectedPlatform}
             onValueChange={(itemValue) => {
               setSelectedPlatform(itemValue);
-              changeModalVisible();
+              if(itemValue !== "") {
+                changeModalVisible();
+              }
             }}
             style={{ height: 50, width: "45%", color:"white" }}
           >
@@ -107,7 +133,9 @@ const Header = ({games, num}) => {
             selectedValue={selectedGenre}
             onValueChange={(itemValue) => {
               setSelectedGenre(itemValue);
-              changeModalVisible();
+              if(itemValue !== "") {
+                changeModalVisible();
+              }
             }}
             style={{ height: 50, width: "45%", color:"white" }}
           >
@@ -134,9 +162,10 @@ const Header = ({games, num}) => {
               />
 
           </Modal>
-      </ImageBackground>
+      </ImageBackground> */}
     
     </View>
+      )
   )
 }
 

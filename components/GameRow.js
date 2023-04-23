@@ -10,24 +10,25 @@ const GameRow = ({game, children, changeModalVisible, setGameSelected}) => {
 }
   return (
     <Pressable 
-    style={{
-        flexDirection:"row",
-        alignItems:"center"
-    }}
-    onPress={handleGameSelected}>
-    {children}
-    <Image 
-        source={{
-            uri: `${game["background_image"]}`
-        }}
-        style={{
-            width:105,
-            height:152,
-            margin:10,
-            borderRadius:6,
-            resizeMode:"cover"
-        }}/>
-</Pressable>
+      style={{
+          alignItems:"center"
+      }}
+      onPress={handleGameSelected}>
+      {children}
+      <Image 
+          source={{
+              uri: `${game["background_image"]}`
+          }}
+          style={{
+              width:105,
+              height:152,
+              margin:10,
+              borderRadius:6,
+              resizeMode:"cover"
+      }}/>
+
+      <Text style={{color: "#FFFFFF", maxWidth: 100, textAlign: "center"}}>{game["name"]}</Text>
+    </Pressable>
   )
 }
 
