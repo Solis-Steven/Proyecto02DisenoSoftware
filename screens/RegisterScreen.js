@@ -25,7 +25,6 @@ const RegisterScreen = () => {
   const handleCreateAccount = () => {
     createUserWithEmailAndPassword(auth, input, password)
       .then((userCredential) => {
-        console.log("Account created");
         const user = userCredential.user;
         setInput("");
         setPassword("");

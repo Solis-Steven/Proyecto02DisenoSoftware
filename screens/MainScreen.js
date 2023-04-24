@@ -40,7 +40,7 @@ const MainScreen = () => {
         setGameSelected={setGameSelected}
         />
 
-      {/* <ElectronicArts
+      <ElectronicArts
         changeModalVisible={changeModalVisible}
         setGameSelected={setGameSelected}
         />
@@ -58,7 +58,7 @@ const MainScreen = () => {
       <CrisVelasco
         changeModalVisible={changeModalVisible}
         setGameSelected={setGameSelected}
-        /> */}
+        />
 
 
       {/* <View style={{alignItems:"center", justifyContent:"center"}}>

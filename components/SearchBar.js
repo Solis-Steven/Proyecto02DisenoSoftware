@@ -18,9 +18,6 @@ const SBar = ({setGameSelected, changeModalVisible}) => {
       const response = await fetch(url);
       const data = await response.json();
       setGames(data.results)
-      console.log(data.results);
-      
-      
     } catch(error) {
       console.log("Error en la consulta a la api:", error);
     } 
@@ -46,7 +43,6 @@ const SBar = ({setGameSelected, changeModalVisible}) => {
          console.log("not found");
       }
     });
-    console.log("result: ",FoundedGames.foundedGames);
     return FoundedGames.foundedGames;
   }
   

@@ -29,7 +29,6 @@ const LoginScreen = () => {
     const handleSignIn = () => {
         signInWithEmailAndPassword(auth, input, password)
         .then((userCredential) => {
-            console.log("Signed in");
             setUser(userCredential.user);
             navigation.navigate("Home")
             setInput("");

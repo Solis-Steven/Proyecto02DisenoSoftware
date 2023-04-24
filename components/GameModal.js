@@ -13,7 +13,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useEffect } from "react";
 
 const WIDTH = Dimensions.get("window").width;
-const HEIGHT = Dimensions.get("window").height - 80;
+const HEIGHT = Dimensions.get("window").height;
 
 const GameModal = ({ changeModalVisible, game }) => {
   const [gameInfo, setGameInfo] = useState({});
@@ -31,7 +31,6 @@ const GameModal = ({ changeModalVisible, game }) => {
         const data = await response.json();
         setGameInfo(data);
         setGenres(data.genres);
-        console.log("DATA:", data);
       } catch (error) {
         console.log("Error en la consulta a la api GAME MODAL:", error);
       }
