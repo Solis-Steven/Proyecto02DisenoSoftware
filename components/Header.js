@@ -8,7 +8,7 @@ import HamburgerMenu from './HamburguerMenu';
 import SBar from './SearchBar';
 import Pickers from './Pickers';
 
-const Header = () => {
+const Header = ({setGameSelected, changeModalVisible}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
   const [games, setGames] = useState([]);
 
@@ -54,7 +54,8 @@ const Header = () => {
         </View>
 
         
-        <SBar/>
+        <SBar setGameSelected={setGameSelected}
+                changeModalVisible={changeModalVisible}/>
         
 
         <Pickers />

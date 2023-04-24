@@ -31,7 +31,9 @@ const MainScreen = () => {
         paddingTop:50
     }}>
 
-      <Header />
+      <Header changeModalVisible={changeModalVisible}
+        setGameSelected={setGameSelected}
+      />
 
       <TrendingComponent
         changeModalVisible={changeModalVisible}

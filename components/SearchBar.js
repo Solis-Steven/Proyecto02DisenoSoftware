@@ -4,7 +4,7 @@ import { Feather } from '@expo/vector-icons'; //importa Feather icons
 import { Ionicons } from "@expo/vector-icons";
 import ModalCom from './searchModalComponent';
 
-const SBar = () => {
+const SBar = ({setGameSelected, changeModalVisible}) => {
   const [searchText, setSearchText] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
   const [games, setGames] = useState(false);
@@ -68,6 +68,8 @@ const SBar = () => {
           games
           ? (
             <ModalCom
+              setGameSelected={setGameSelected}
+              changeModalVisible={changeModalVisible}
               visible={isModalVisible} 
               onClose={changeModal} 
               games={games}
