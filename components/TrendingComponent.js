@@ -57,7 +57,7 @@ const TrendingComponent = ({setGameSelected, changeModalVisible} ) => {
                     position:"absolute",
                     zIndex:5,
                     top:40,
-                    right:90,
+                    right:70,
                     marginTop:20
                 }}>
                     {index + 1}
