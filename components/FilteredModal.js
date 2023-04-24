@@ -51,10 +51,10 @@ const FilteredModal = ({changeModalVisible, selectedGenre, selectedPlatform}) =>
         >
           <View
             style={{
-              height: HEIGHT,
-              width: WIDTH - 80,
+              height: '100%',
+              width: '100%',
               paddingTop: 0,
-              backgroundColor: "#EEEEEE",
+              backgroundColor: "#1c1c1c",
               borderRadius: 10,
               position: "absolute",
               alignItems: "center",
@@ -67,9 +67,11 @@ const FilteredModal = ({changeModalVisible, selectedGenre, selectedPlatform}) =>
                 position: "absolute",
                 right: 10,
                 top: 10,
+                paddingTop: 10,
+                paddingRight:10,
               }}
             >
-              <Ionicons name="close" size={32} color="black" />
+              <Ionicons name="arrow-back" size={24} color="red"/>
             </TouchableOpacity>
       
             <View style={{ flex: 1, marginTop: 50 }}>

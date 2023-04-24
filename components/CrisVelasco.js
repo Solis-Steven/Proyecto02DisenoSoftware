@@ -2,7 +2,7 @@ import { Pressable, Text, View, Image, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import GameRow from './GameRow';
 
-const CrisVelasco = () => {
+const CrisVelasco = ({setGameSelected, changeModalVisible}) => {
     const [games, setGames] = useState([]);
     const [num, setNum] = useState(0);
 
@@ -47,7 +47,9 @@ const CrisVelasco = () => {
         {
             games.slice(num, num + 10).map( game => (
                 
-                <GameRow game={game} key={game["id"]}/>
+                <GameRow game={game} key={game["id"]}
+                changeModalVisible={changeModalVisible}
+                setGameSelected={setGameSelected}/>
             ))
         }
         </ScrollView>

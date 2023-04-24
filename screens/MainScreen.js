@@ -38,40 +38,43 @@ const MainScreen = () => {
         setGameSelected={setGameSelected}
         />
 
-      {/* <ElectronicArts 
+      {/* <ElectronicArts
+        changeModalVisible={changeModalVisible}
+        setGameSelected={setGameSelected}
         />
 
-      <MicrosoftStudios 
+      <MicrosoftStudios
+        changeModalVisible={changeModalVisible}
+        setGameSelected={setGameSelected}
         />
 
       <ValveSoftware 
+        changeModalVisible={changeModalVisible}
+        setGameSelected={setGameSelected}
         />
 
       <CrisVelasco
+        changeModalVisible={changeModalVisible}
+        setGameSelected={setGameSelected}
         /> */}
 
-      <View style={{alignItems:"center", justifyContent:"center"}}>
+
+      {/* <View style={{alignItems:"center", justifyContent:"center"}}>
         <LoadingScreen />
-      </View>
-            
-        
-        <View>
-
-        <Modal
-            transparent={true}
-            animationType="fade"
-            visible={gameModalVisible}
-            onRequestClose={changeModalVisible}>
-            <GameModal
-              changeModalVisible={changeModalVisible}
-              game={gameSelected}
-            />
-        </Modal>
-
-        </View>
-        
+      </View> */}
 
 
+      <Modal
+        transparent={true}
+        animationType="fade"
+        visible={gameModalVisible}
+        onRequestClose={changeModalVisible}
+        flex={{flex: 1}}>
+        <GameModal
+          changeModalVisible={changeModalVisible}
+          game={gameSelected}
+        />
+      </Modal>
     </ScrollView>
   )
 }
