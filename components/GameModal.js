@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native";
 import { useEffect } from "react";
 
 const WIDTH = Dimensions.get("window").width;
@@ -51,18 +51,22 @@ const GameModal = ({ changeModalVisible, game }) => {
         }}
       >
         <ScrollView>
-        <TouchableOpacity
+          
+          <TouchableOpacity
           style={{ 
             position: "relative", 
             top: 10, 
             left: "90%",
             paddingTop: 10,
-            paddingRight:10
+            paddingRight:10,
+            
           }}
-          onPress={() => console.log("Presionando")}
+          onPress={() => closeModal()}
         >
           <Ionicons name="arrow-back" size={24} color="red"/>
         </TouchableOpacity>
+         
+        
 
         <View style={{ marginTop: 30, alignItems: "center" }}>
           <Image
