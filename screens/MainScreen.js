@@ -24,12 +24,22 @@ const MainScreen = () => {
   }
 
   return (
+    
+    <>
+    <View style={{backgroundColor: 'black',
+    paddingTop: 50,
+    paddingBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center',}}>
+
+    </View>
     <ScrollView 
       style={{
         flex:1,
         backgroundColor:"black",
-        paddingTop:50
-    }}>
+        
+    }}
+    >
 
       <Header changeModalVisible={changeModalVisible}
         setGameSelected={setGameSelected}
@@ -61,23 +71,32 @@ const MainScreen = () => {
         />
 
 
-      {/* <View style={{alignItems:"center", justifyContent:"center"}}>
+      
+
+     
+      
+
+
+      <View style={{alignItems:"center", justifyContent:"center"}}>
         <LoadingScreen />
-      </View> */}
+      </View>
 
+    </ScrollView>
 
-      <Modal
+    <Modal
         transparent={true}
         animationType="fade"
         visible={gameModalVisible}
         onRequestClose={changeModalVisible}
-        flex={{flex: 1}}>
+
+        >
         <GameModal
           changeModalVisible={changeModalVisible}
           game={gameSelected}
         />
       </Modal>
-    </ScrollView>
+    </>
+    
   )
 }
 

@@ -13,7 +13,7 @@ import { TouchableOpacity } from "react-native";
 import { useEffect } from "react";
 
 const WIDTH = Dimensions.get("window").width;
-const HEIGHT = Dimensions.get("window").height;
+const HEIGHT = Dimensions.get("window").height - 80;
 
 const GameModal = ({ changeModalVisible, game }) => {
   const [gameInfo, setGameInfo] = useState({});
@@ -31,6 +31,7 @@ const GameModal = ({ changeModalVisible, game }) => {
         const data = await response.json();
         setGameInfo(data);
         setGenres(data.genres);
+        console.log("DATA:", data);
       } catch (error) {
         console.log("Error en la consulta a la api GAME MODAL:", error);
       }
@@ -39,14 +40,13 @@ const GameModal = ({ changeModalVisible, game }) => {
   }, [])
 
   return (
-      <TouchableOpacity disabled={true} style={styles.modalFormat}>
+      <TouchableOpacity disabled={true}>
       <View
         style={{
-          height: '100%',
+          height: "100%",
           width: '100%',
-          paddingTop: 0,
           backgroundColor: "#1c1c1c",
-          borderRadius: 10,
+                   
         }}
       >
         <ScrollView>
@@ -57,15 +57,12 @@ const GameModal = ({ changeModalVisible, game }) => {
             top: 10, 
             left: "90%",
             paddingTop: 10,
-            paddingRight:10,
-            
+            paddingRight:10,  
           }}
           onPress={() => closeModal()}
         >
           <Ionicons name="arrow-back" size={24} color="red"/>
         </TouchableOpacity>
-         
-        
 
         <View style={{ marginTop: 30, alignItems: "center" }}>
           <Image
@@ -153,10 +150,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
 
   },
-  modalFormat: {
-    alignItems: "center",
-    justifyContent: "center"
-  },
+
 });
 
 export default GameModal;

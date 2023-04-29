@@ -58,7 +58,8 @@ const Header = ({setGameSelected, changeModalVisible}) => {
                 changeModalVisible={changeModalVisible}/>
         
 
-        <Pickers />
+        <Pickers setGameSelected={setGameSelected}
+                changeModalVisible={changeModalVisible}/>
       </ImageBackground>
     
     </View>

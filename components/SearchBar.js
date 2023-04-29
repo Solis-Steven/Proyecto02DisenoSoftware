@@ -67,7 +67,7 @@ const SBar = ({setGameSelected, changeModalVisible}) => {
               setGameSelected={setGameSelected}
               changeModalVisible={changeModalVisible}
               visible={isModalVisible} 
-              onClose={changeModal} 
+              changeModal={changeModal} 
               games={games}
               list={returnList()}/>
 

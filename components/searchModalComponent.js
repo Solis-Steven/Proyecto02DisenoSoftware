@@ -3,7 +3,7 @@ import { ScrollView,View, TextInput, StyleSheet, TouchableOpacity, Button, Modal
 import { Ionicons } from "@expo/vector-icons";
 import GameColumn from './GameColumn';
 
-const ModalCom = ({visible, onClose, games, list, setGameSelected, changeModalVisible}) => {
+const ModalCom = ({visible, changeModal, games, list, setGameSelected, changeModalVisible}) => {
   const [lista, setList] = useState([]);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const ModalCom = ({visible, onClose, games, list, setGameSelected, changeModalVi
     <Modal visible={visible} animationType="fade" transparent={true}>
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-        <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+        <TouchableOpacity onPress={changeModal} style={styles.closeButton}>
           <Text style={styles.closeButtonText}>
           <Ionicons name="arrow-back" size={24} color="red"/>
           </Text> 
@@ -31,6 +31,7 @@ const ModalCom = ({visible, onClose, games, list, setGameSelected, changeModalVi
                 <GameColumn game={game} key={game["id"]}
                   setGameSelected={setGameSelected}
                   changeModalVisible={changeModalVisible}
+                  changeModal={changeModal}
                   
                 />
                 // <Image visible={false}

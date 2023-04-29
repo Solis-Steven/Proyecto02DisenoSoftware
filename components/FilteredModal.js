@@ -7,11 +7,12 @@ import {
     FlatList
 } from "react-native"
 import { Ionicons } from "@expo/vector-icons";
-
 const WIDTH = Dimensions.get("window").width;
 const HEIGHT = Dimensions.get("window").height - 80;
+import GameRow from "./GameRow";
 
-const FilteredModal = ({changeModalVisible, selectedGenre, selectedPlatform}) => {
+
+const FilteredModal = ({changeModalStatus, selectedGenre, selectedPlatform, setGameSelected, changeModalVisible}) => {
     const [games, setGames] = useState([]);
 
     useEffect(() => {
@@ -37,7 +38,7 @@ const FilteredModal = ({changeModalVisible, selectedGenre, selectedPlatform}) =>
     }, []);
 
     const closeModal = () => {
-        changeModalVisible()
+        changeModalStatus()
     }
 
     return (
@@ -82,7 +83,12 @@ const FilteredModal = ({changeModalVisible, selectedGenre, selectedPlatform}) =>
                         keyExtractor={(item) => item.id.toString()}
                         renderItem={({ item }) => (
                         <View style={{ margin: 5 }}>
-                            <Image
+
+                              <GameRow game={item} key={item["id"]}
+                                setGameSelected={setGameSelected}
+                                changeModalVisible={changeModalVisible}
+                                />
+                            {/* <Image
                                 source={{ uri: item["background_image"] }}
                                 style={{
                                     width:105,
@@ -92,7 +98,7 @@ const FilteredModal = ({changeModalVisible, selectedGenre, selectedPlatform}) =>
                                     resizeMode:"cover"
                                 }}
                               
-                            />
+                            /> */}
                         </View>
                         )}
                         numColumns={Math.floor(WIDTH / 200)} // Ancho de cada columna: 200

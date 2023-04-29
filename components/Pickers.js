@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 import FilteredModal from "./FilteredModal";
 
-const Pickers = () => {
+const Pickers = ({setGameSelected, changeModalVisible}) => {
   const [selectedPlatform, setSelectedPlatform] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalStatus, setIsModalStatus] = useState(false);
 
-  const changeModalVisible = () => {
-    setIsModalVisible(!isModalVisible);
+  const changeModalStatus = () => {
+    setIsModalStatus(!isModalStatus);
   };
 
   const platforms = [
@@ -45,7 +45,7 @@ const Pickers = () => {
             onValueChange={(itemValue) => {
               setSelectedPlatform(itemValue);
               if (itemValue !== "") {
-                changeModalVisible();
+                changeModalStatus();
               }
             }}
             style={{
@@ -70,7 +70,7 @@ const Pickers = () => {
             onValueChange={(itemValue) => {
               setSelectedGenre(itemValue);
               if (itemValue !== "") {
-                changeModalVisible();
+                changeModalStatus();
               }
             }}
             style={{
@@ -93,11 +93,13 @@ const Pickers = () => {
       <Modal
         transparent={true}
         animationType="fade"
-        visible={isModalVisible}
-        onRequestClose={changeModalVisible}
+        visible={isModalStatus}
+        onRequestClose={changeModalStatus}
       >
         <FilteredModal
+          setGameSelected={setGameSelected}
           changeModalVisible={changeModalVisible}
+          changeModalStatus={changeModalStatus}
           selectedGenre={selectedGenre}
           selectedPlatform={selectedPlatform}
         />
