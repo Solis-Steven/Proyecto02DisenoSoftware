@@ -5,10 +5,10 @@ import {
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import HamburgerMenu from './HamburguerMenu';
-import SBar from './SBar';
+import SBar from './SearchBar';
 import Pickers from './Pickers';
 
-const Header = () => {
+const Header = ({setGameSelected, changeModalVisible}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
   const [games, setGames] = useState([]);
 
@@ -54,10 +54,12 @@ const Header = () => {
         </View>
 
         
-        {/* <SBar/> */}
+        <SBar setGameSelected={setGameSelected}
+                changeModalVisible={changeModalVisible}/>
         
 
-        <Pickers />
+        <Pickers setGameSelected={setGameSelected}
+                changeModalVisible={changeModalVisible}/>
       </ImageBackground>
     
     </View>

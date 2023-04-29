@@ -24,55 +24,79 @@ const MainScreen = () => {
   }
 
   return (
+    
+    <>
+    <View style={{backgroundColor: 'black',
+    paddingTop: 50,
+    paddingBottom: 10,
+    alignItems: 'center',
+    justifyContent: 'center',}}>
+
+    </View>
     <ScrollView 
       style={{
         flex:1,
         backgroundColor:"black",
-        paddingTop:50
-    }}>
+        
+    }}
+    >
 
-      <Header />
+      <Header changeModalVisible={changeModalVisible}
+        setGameSelected={setGameSelected}
+      />
 
       <TrendingComponent
         changeModalVisible={changeModalVisible}
         setGameSelected={setGameSelected}
         />
 
-      {/* <ElectronicArts 
+      <ElectronicArts
+        changeModalVisible={changeModalVisible}
+        setGameSelected={setGameSelected}
         />
 
-      <MicrosoftStudios 
+      <MicrosoftStudios
+        changeModalVisible={changeModalVisible}
+        setGameSelected={setGameSelected}
         />
 
       <ValveSoftware 
+        changeModalVisible={changeModalVisible}
+        setGameSelected={setGameSelected}
         />
 
       <CrisVelasco
-        /> */}
+        changeModalVisible={changeModalVisible}
+        setGameSelected={setGameSelected}
+        />
+
+
+      
+
+     
+      
+
 
       <View style={{alignItems:"center", justifyContent:"center"}}>
         <LoadingScreen />
       </View>
-            
-        
-        <View>
-
-        <Modal
-            transparent={true}
-            animationType="fade"
-            visible={gameModalVisible}
-            onRequestClose={changeModalVisible}>
-            <GameModal
-              changeModalVisible={changeModalVisible}
-              game={gameSelected}
-            />
-        </Modal>
-
-        </View>
-        
-
 
     </ScrollView>
+
+    <Modal
+        transparent={true}
+        animationType="fade"
+        visible={gameModalVisible}
+        onRequestClose={changeModalVisible}
+
+        >
+        <GameModal
+          changeModalVisible={changeModalVisible}
+          game={gameSelected}
+        />
+      </Modal>
+    </>
+    
   )
 }
 

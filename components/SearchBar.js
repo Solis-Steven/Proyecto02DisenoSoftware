@@ -1,34 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, StyleSheet, TouchableOpacity, Button, Modal, Text  } from 'react-native';
 import { Feather } from '@expo/vector-icons'; //importa Feather icons 
-import ModalCom from './ModalCom';
+import { Ionicons } from "@expo/vector-icons";
+import ModalCom from './searchModalComponent';
 
-const SBar = () => {
+const SBar = ({setGameSelected, changeModalVisible}) => {
   const [searchText, setSearchText] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
   const [games, setGames] = useState(false);
-
-  const Url = {url: ''};
   const FoundedGames = {foundedGames: []};
-  // console.log(searchedText);
+  
 
-  useEffect(() => {
-    const gamesData = async() => {
-      try {
-        const url = "https://api.rawg.io/api/games?page_size=200&key=81ebbf2905154d1e9bce047672266b0e";
-        const response = await fetch(url);
-        const data = await response.json();
-        setGames(data.results)
-        
-        
-      } catch(error) {
-        console.log("Error en la consulta a la api:", error);
-      } 
-    }
-      gamesData();  
-  }, []);
 
+  const gamesData = async() => {
+    try {
+      const url = `https://api.rawg.io/api/games?page_size=20&search=${searchText}&key=81ebbf2905154d1e9bce047672266b0e`;
+      const response = await fetch(url);
+      const data = await response.json();
+      setGames(data.results)
+    } catch(error) {
+      console.log("Error en la consulta a la api:", error);
+    } 
+  }
+  
   const changeModal = () => {
+    gamesData();  
     setModalVisible(!isModalVisible); 
   } 
 
@@ -47,7 +43,6 @@ const SBar = () => {
          console.log("not found");
       }
     });
-    console.log(FoundedGames.foundedGames);
     return FoundedGames.foundedGames;
   }
   
@@ -55,24 +50,24 @@ const SBar = () => {
   return (
     <View style={styles.container}>
         <View style={styles.searchContainer}>
-          <Feather name="search" size={16} color="#aaa" style={styles.icon} />
-          {/**revisar */}
-          <TextInput
-            style={styles.input}
-            placeholder="Search a game"
-            onChangeText={setSearchText}
-            selectTextOnFocus={false} //desactiva la selección automática de texto
-          />
+            <TextInput
+              style={styles.input}
+              placeholder="Search a game"
+              onChangeText={setSearchText}
+              selectTextOnFocus={false} //desactiva la selección automática de texto
+            />
         </View>
         <TouchableOpacity style={styles.buttonContainer} onPress={changeModal} >
-          <Feather name="search" size={16} color="#fff" style={styles.buttonIcon} /> {/*icono de lupa blanca*/}
+          <Ionicons name="search" size={16} color="#fff" style={styles.buttonIcon}/>
         </TouchableOpacity>
         {
           games
           ? (
             <ModalCom
+              setGameSelected={setGameSelected}
+              changeModalVisible={changeModalVisible}
               visible={isModalVisible} 
-              onClose={changeModal} 
+              changeModal={changeModal} 
               games={games}
               list={returnList()}/>
 
@@ -80,7 +75,6 @@ const SBar = () => {
             <></>
           )
         }
-        
     </View>
     
   );
@@ -88,18 +82,18 @@ const SBar = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#333',
+    backgroundColor:'#e50914',
     paddingRight: 10,
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 10,
-    marginTop: 40,
+    marginTop: "20%",
     marginBottom: 20,
     marginLeft: 30,
     marginRight: 30,
   },
   searchContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: '#f7f7f7',
     borderRadius: 10,
     paddingHorizontal: 5,
     flex: 1,
@@ -110,6 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 40,
     marginLeft: 10,
+    backgroundColor: '#f7f7f7'
   },
   icon: {
     marginRight: 10,

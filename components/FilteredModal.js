@@ -7,11 +7,12 @@ import {
     FlatList
 } from "react-native"
 import { Ionicons } from "@expo/vector-icons";
-
 const WIDTH = Dimensions.get("window").width;
 const HEIGHT = Dimensions.get("window").height - 80;
+import GameRow from "./GameRow";
 
-const FilteredModal = ({changeModalVisible, selectedGenre, selectedPlatform}) => {
+
+const FilteredModal = ({changeModalStatus, selectedGenre, selectedPlatform, setGameSelected, changeModalVisible}) => {
     const [games, setGames] = useState([]);
 
     useEffect(() => {
@@ -37,7 +38,7 @@ const FilteredModal = ({changeModalVisible, selectedGenre, selectedPlatform}) =>
     }, []);
 
     const closeModal = () => {
-        changeModalVisible()
+        changeModalStatus()
     }
 
     return (
@@ -51,10 +52,10 @@ const FilteredModal = ({changeModalVisible, selectedGenre, selectedPlatform}) =>
         >
           <View
             style={{
-              height: HEIGHT,
-              width: WIDTH - 80,
+              height: '100%',
+              width: '100%',
               paddingTop: 0,
-              backgroundColor: "#EEEEEE",
+              backgroundColor: "#1c1c1c",
               borderRadius: 10,
               position: "absolute",
               alignItems: "center",
@@ -67,9 +68,11 @@ const FilteredModal = ({changeModalVisible, selectedGenre, selectedPlatform}) =>
                 position: "absolute",
                 right: 10,
                 top: 10,
+                paddingTop: 10,
+                paddingRight:10,
               }}
             >
-              <Ionicons name="close" size={32} color="black" />
+              <Ionicons name="arrow-back" size={24} color="red"/>
             </TouchableOpacity>
       
             <View style={{ flex: 1, marginTop: 50 }}>
@@ -80,7 +83,12 @@ const FilteredModal = ({changeModalVisible, selectedGenre, selectedPlatform}) =>
                         keyExtractor={(item) => item.id.toString()}
                         renderItem={({ item }) => (
                         <View style={{ margin: 5 }}>
-                            <Image
+
+                              <GameRow game={item} key={item["id"]}
+                                setGameSelected={setGameSelected}
+                                changeModalVisible={changeModalVisible}
+                                />
+                            {/* <Image
                                 source={{ uri: item["background_image"] }}
                                 style={{
                                     width:105,
@@ -90,7 +98,7 @@ const FilteredModal = ({changeModalVisible, selectedGenre, selectedPlatform}) =>
                                     resizeMode:"cover"
                                 }}
                               
-                            />
+                            /> */}
                         </View>
                         )}
                         numColumns={Math.floor(WIDTH / 200)} // Ancho de cada columna: 200

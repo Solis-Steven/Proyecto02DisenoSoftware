@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native";
 import { useEffect } from "react";
 
 const WIDTH = Dimensions.get("window").width;
@@ -29,9 +29,9 @@ const GameModal = ({ changeModalVisible, game }) => {
         const url = `https://api.rawg.io/api/games/${game}?key=81ebbf2905154d1e9bce047672266b0e`;
         const response = await fetch(url);
         const data = await response.json();
-        console.log(data);
         setGameInfo(data);
         setGenres(data.genres);
+        console.log("DATA:", data);
       } catch (error) {
         console.log("Error en la consulta a la api GAME MODAL:", error);
       }
@@ -40,22 +40,28 @@ const GameModal = ({ changeModalVisible, game }) => {
   }, [])
 
   return (
-    <TouchableOpacity disabled={true} style={styles.modalFormat}>
+      <TouchableOpacity disabled={true}>
       <View
         style={{
-          height: HEIGHT,
-          width: WIDTH - 80,
-          paddingTop: 0,
-          backgroundColor: "black",
-          borderRadius: 10,
-          position: "absolute",
+          height: "100%",
+          width: '100%',
+          backgroundColor: "#1c1c1c",
+                   
         }}
       >
-        <TouchableOpacity
-          style={{ position: "absolute", top: 10, right: 10 }}
-          onPress={closeModal}
+        <ScrollView>
+          
+          <TouchableOpacity
+          style={{ 
+            position: "relative", 
+            top: 10, 
+            left: "90%",
+            paddingTop: 10,
+            paddingRight:10,  
+          }}
+          onPress={() => closeModal()}
         >
-          <Ionicons name="close" size={24} color="white" />
+          <Ionicons name="arrow-back" size={24} color="red"/>
         </TouchableOpacity>
 
         <View style={{ marginTop: 30, alignItems: "center" }}>
@@ -89,9 +95,11 @@ const GameModal = ({ changeModalVisible, game }) => {
         <View style={{ marginTop: 16, alignItems: "center" }}>
           <Image
             source={{ uri: `${gameInfo["background_image_additional"]}` }}
-            style={styles.gameImage}
+            style={styles.gameSecondaryImage}
           />
         </View>
+        </ScrollView>
+
         
       </View>
     </TouchableOpacity>
@@ -117,13 +125,20 @@ const styles = StyleSheet.create({
   },
   gameImage: {
     marginTop: 10,
+    width: WIDTH - 25,
+    height: HEIGHT - 550,
+    borderRadius: 6,
+    resizeMode: "cover",
+  },
+  gameSecondaryImage: {
+    marginTop: 10,
     width: WIDTH - 100,
-    height: HEIGHT - 600,
+    height: HEIGHT - 500,
     borderRadius: 6,
     resizeMode: "cover",
   },
   genreContainer: {
-    backgroundColor: "#67666A",
+    backgroundColor: "red",
     borderRadius: 6,
     padding: 5,
     margin: 5,
@@ -135,12 +150,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
 
   },
-  modalFormat: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "rgba(0,0,0,0.5)",
-  },
+
 });
 
 export default GameModal;
