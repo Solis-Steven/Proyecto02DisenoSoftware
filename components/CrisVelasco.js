@@ -1,4 +1,4 @@
-import { Pressable, Text, View, Image, ScrollView } from 'react-native'
+import { Text, View, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import GameRow from './GameRow';
 

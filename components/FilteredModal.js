@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {
-    Text, View,
-    TouchableOpacity, Dimensions,
-    ScrollView, Pressable,
-    Image,
-    FlatList
+  View,
+  TouchableOpacity, Dimensions,
+  FlatList
 } from "react-native"
 import { Ionicons } from "@expo/vector-icons";
 const WIDTH = Dimensions.get("window").width;
@@ -88,17 +86,6 @@ const FilteredModal = ({changeModalStatus, selectedGenre, selectedPlatform, setG
                                 setGameSelected={setGameSelected}
                                 changeModalVisible={changeModalVisible}
                                 />
-                            {/* <Image
-                                source={{ uri: item["background_image"] }}
-                                style={{
-                                    width:105,
-                                    height:152,
-                                    margin:10,
-                                    borderRadius:6,
-                                    resizeMode:"cover"
-                                }}
-                              
-                            /> */}
                         </View>
                         )}
                         numColumns={Math.floor(WIDTH / 200)} // Ancho de cada columna: 200

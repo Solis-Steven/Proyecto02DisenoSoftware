@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';   
-import { ScrollView,View, TextInput, StyleSheet, TouchableOpacity, Button, Modal, Text, Image} from 'react-native';
+import { 
+  ScrollView,
+  View, 
+  StyleSheet, 
+  TouchableOpacity, 
+  Modal, Text
+} from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 import GameColumn from './GameColumn';
 
-const ModalCom = ({visible, changeModal, games, list, setGameSelected, changeModalVisible}) => {
+const ModalCom = ({visible, changeModal, list, setGameSelected, changeModalVisible}) => {
   const [lista, setList] = useState([]);
 
   useEffect(() => {
     setList(list);
-    console.log(lista, "setList");
   },[lista]);
 
   return (
@@ -34,17 +39,6 @@ const ModalCom = ({visible, changeModal, games, list, setGameSelected, changeMod
                   changeModal={changeModal}
                   
                 />
-                // <Image visible={false}
-                //   key={game["id"]}
-                //   source={{ uri: `${game["background_image"]}` }} 
-                //   style={{
-                //     width:200,
-                //     height:152,
-                //     margin:10,
-                //     borderRadius:6,
-                //     resizeMode:"cover"
-  
-                //   }} />
               ))
   
             ):(

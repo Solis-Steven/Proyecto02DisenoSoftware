@@ -11,8 +11,8 @@ function DrawerMain() {
   return (
     <Drawer.Navigator
       gestureEnabled={false}
-     screenOptions={{headerShown:false}} 
-     drawerContent={(props) => <DrawerContent {...props}/>}>
+      screenOptions={{headerShown:false}} 
+      drawerContent={(props) => <DrawerContent {...props}/>}>
         
       <Drawer.Screen
         name="MainDrawer" component={MainScreen}    

@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Image,
   ScrollView,
-  Pressable,
   Dimensions,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -31,7 +30,6 @@ const GameModal = ({ changeModalVisible, game }) => {
         const data = await response.json();
         setGameInfo(data);
         setGenres(data.genres);
-        console.log("DATA:", data);
       } catch (error) {
         console.log("Error en la consulta a la api GAME MODAL:", error);
       }

@@ -9,7 +9,6 @@ import SBar from './SearchBar';
 import Pickers from './Pickers';
 
 const Header = ({setGameSelected, changeModalVisible}) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
   const [games, setGames] = useState([]);
 
   useEffect(() => {

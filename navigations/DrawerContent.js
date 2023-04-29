@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -27,8 +27,7 @@ const DrawerContent = (props) => {
             <Icon name="logout" size={size} color="red" />
           </View>
         )}
-        // Estilos del elemento "Sign Out"
-        labelStyle={styles.labelStyle} // Aplicar estilos a través de la variable de estilo labelStyle
+        labelStyle={styles.labelStyle}
       />
     </DrawerContentScrollView>
   );
@@ -40,9 +39,9 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     labelStyle: {
-        color: 'red', // Cambia el color del texto del elemento "Sign Out"
-        fontSize: 18, // Cambia el tamaño de fuente del texto del elemento "Sign Out"
-        flex: 1 // Alinea el texto verticalmente con el icono usando flex
+        color: 'red', 
+        fontSize: 18, 
+        flex: 1 
     }
 });
 

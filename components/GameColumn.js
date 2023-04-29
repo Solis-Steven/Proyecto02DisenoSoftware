@@ -1,4 +1,4 @@
-import { ScrollView, Text, View, Image } from 'react-native'
+import { Text, Image } from 'react-native'
 import React from 'react'
 import { Pressable } from 'react-native';
 

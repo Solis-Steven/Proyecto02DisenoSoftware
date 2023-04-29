@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, TextInput, StyleSheet, TouchableOpacity, Button, Modal, Text  } from 'react-native';
-import { Feather } from '@expo/vector-icons'; //importa Feather icons 
+import React, { useState } from 'react';
+import { View, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 import ModalCom from './searchModalComponent';
 
