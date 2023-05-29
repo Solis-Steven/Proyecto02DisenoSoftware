@@ -13,7 +13,7 @@ const SBar = ({setGameSelected, changeModalVisible}) => {
 
   const gamesData = async() => {
     try {
-      const url = `https://api.rawg.io/api/games?page_size=20&search=${searchText}&key=24ceba8caedf4f538bf69ccd25d1d011`;
+      const url = `https://api.rawg.io/api/games?page_size=20&search=${searchText}&key=81ebbf2905154d1e9bce047672266b0e`;
       const response = await fetch(url);
       const data = await response.json();
       setGames(data.results)

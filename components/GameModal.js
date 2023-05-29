@@ -44,6 +44,7 @@ const GameModal = ({ changeModalVisible, game }) => {
           height: "100%",
           width: '100%',
           backgroundColor: "#1c1c1c",
+          zIndex: 500,
                    
         }}
       >
