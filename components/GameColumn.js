@@ -7,7 +7,7 @@ const GameColumn = ({game, children, changeModalVisible, setGameSelected, change
   const handleGameSelected = () => {
     setGameSelected(game["id"]);
     changeModalVisible();
-    changeModal();
+   
 }
   return (
     <Pressable 
