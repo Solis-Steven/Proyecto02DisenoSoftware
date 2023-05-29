@@ -1,4 +1,4 @@
-import { Pressable, Text, View, Image, ScrollView } from 'react-native'
+import { Text, View, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import GameRow from './GameRow';
 
@@ -14,7 +14,7 @@ const ElectronicArts = ({setGameSelected, changeModalVisible}) => {
     useEffect(() => {
         const gamesData = async() => {
           try {
-            const url = "https://api.rawg.io/api/games?page_size=40&key=81ebbf2905154d1e9bce047672266b0e&publishers=electronic-arts";
+            const url = `https://api.rawg.io/api/games?page_size=40&key=24ceba8caedf4f538bf69ccd25d1d011&publishers=electronic-arts`;
             const response = await fetch(url);
             const data = await response.json();
             setGames(data.results)

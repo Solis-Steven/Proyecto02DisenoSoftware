@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Proyecto02DisenoSoftware",
-    "slug": "Proyecto02DisenoSoftware",
+    "slug": "proyecto02diseno",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,16 +15,24 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.s.solis.proyecto02diseno"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.s.solis.proyecto02diseno"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e3e39b9e-134a-4b1b-a9d3-3db707fdc1c1"
+      }
+    },
+    "owner": "s.solis"
   }
 }

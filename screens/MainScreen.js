@@ -1,4 +1,4 @@
-import { ScrollView, Modal } from 'react-native'
+import { ScrollView, Modal, View } from 'react-native'
 import React, { useState } from 'react'
 import Header from '../components/Header'
 import TrendingComponent from '../components/TrendingComponent';
@@ -19,6 +19,13 @@ const MainScreen = () => {
   return (
     
     <>
+      <View style={{backgroundColor: 'black',
+        paddingTop: 50,
+        paddingBottom: 10,
+        alignItems: 'center',
+        justifyContent: 'center',}}>
+      </View>
+
       <ScrollView 
         style={{
           flex:1,
@@ -33,27 +40,27 @@ const MainScreen = () => {
         <TrendingComponent
           changeModalVisible={changeModalVisible}
           setGameSelected={setGameSelected}
-          />
+        />
 
         <ElectronicArts
           changeModalVisible={changeModalVisible}
           setGameSelected={setGameSelected}
-          />
+        />
 
         <MicrosoftStudios
           changeModalVisible={changeModalVisible}
           setGameSelected={setGameSelected}
-          />
+        />
 
         <ValveSoftware 
           changeModalVisible={changeModalVisible}
           setGameSelected={setGameSelected}
-          />
+        />
 
         <CrisVelasco
           changeModalVisible={changeModalVisible}
           setGameSelected={setGameSelected}
-          />
+        />
       </ScrollView>
 
       <Modal

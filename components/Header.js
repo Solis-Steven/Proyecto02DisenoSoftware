@@ -14,7 +14,7 @@ const Header = ({setGameSelected, changeModalVisible}) => {
   useEffect(() => {
     const gamesData = async() => {
       try {
-        const url = "https://api.rawg.io/api/games?page_size=200&key=81ebbf2905154d1e9bce047672266b0e";
+        const url = `https://api.rawg.io/api/games?page_size=200&key=24ceba8caedf4f538bf69ccd25d1d011`;
         const response = await fetch(url);
         const data = await response.json();
         setGames(data.results)
@@ -23,7 +23,7 @@ const Header = ({setGameSelected, changeModalVisible}) => {
         console.log("Error en la consulta a la api:", error);
       }
     }
-      gamesData();
+    gamesData();
   }, []);
   
   return (

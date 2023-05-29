@@ -14,7 +14,7 @@ const ValveSoftware = ({setGameSelected, changeModalVisible}) => {
     useEffect(() => {
         const gamesData = async() => {
           try {
-            const url = "https://api.rawg.io/api/games?page_size=40&key=81ebbf2905154d1e9bce047672266b0e&developers=valve-software";
+            const url = `https://api.rawg.io/api/games?page_size=40&key=24ceba8caedf4f538bf69ccd25d1d011&developers=valve-software`;
             const response = await fetch(url);
             const data = await response.json();
             setGames(data.results)

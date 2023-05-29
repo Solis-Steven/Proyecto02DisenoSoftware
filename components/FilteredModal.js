@@ -6,7 +6,6 @@ import {
 } from "react-native"
 import { Ionicons } from "@expo/vector-icons";
 const WIDTH = Dimensions.get("window").width;
-const HEIGHT = Dimensions.get("window").height - 80;
 import GameRow from "./GameRow";
 
 
@@ -18,10 +17,10 @@ const FilteredModal = ({changeModalStatus, selectedGenre, selectedPlatform, setG
         try {
             let url = "";
             if(selectedGenre === "") {
-              url = `https://api.rawg.io/api/games?page_size=100&platform=${selectedPlatform}&key=81ebbf2905154d1e9bce047672266b0e`;
+              url = `https://api.rawg.io/api/games?page_size=100&platform=${selectedPlatform}&key=24ceba8caedf4f538bf69ccd25d1d011`;
             } else {
 
-              url = `https://api.rawg.io/api/games?page_size=100&genres=${selectedGenre}&platform=${selectedPlatform}&key=81ebbf2905154d1e9bce047672266b0e`;
+              url = `https://api.rawg.io/api/games?page_size=100&genres=${selectedGenre}&platform=${selectedPlatform}&key=24ceba8caedf4f538bf69ccd25d1d011`;
             }
             const response = await fetch(url);
             const data = await response.json();
